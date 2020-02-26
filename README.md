@@ -21,7 +21,7 @@ pip install -r requirements.txt
 Tạo database:
 
 ```bash
-python manage.py makemigrations
+python manage.py makemigrations users
 python manage.py migrate
 ```
 
