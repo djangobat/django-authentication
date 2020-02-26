@@ -1,0 +1,12 @@
+{% extends "base.html" %}
+{% load widget_tweaks %}
+{% block title %}
+    Đăng xuất
+{% endblock title %}
+
+{% block main %}
+<div class="text-center pt-5">
+    <h1 class="display-4">Đăng xuất</h1>
+    <p class="lead text-muted">Bạn đã đăng xuất tài khoản, <a href="{% url 'login' %}">Đăng nhập</a> lại hoặc trở về <a href="{% url 'home' %}">trang chủ</a></p>
+</div>
+{% endblock main %}

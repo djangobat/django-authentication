@@ -1,0 +1,91 @@
+{% extends "base.html" %}
+{% load static %}
+{% load widget_tweaks %}
+{% block title %}
+Profile
+{% endblock title %}
+{% block main %}
+<div class="text-center pt-5 mb-5">
+    <h1 class="display-4">Cập nhật thông tin</h1>
+    <p class="lead text-muted">Cập nhật thông tin cá nhân</p>
+</div>
+<div class="row">
+    <div class="col-md-4 mb-4">
+        <div class="card">
+            {% if user.photo %}
+                <img class="card-img-top" src="{{ user.photo.url }}" alt="image" style="width:100%">
+            {% else %}
+                <img class="card-img-top" src="{% static 'img/avatar.png' %}" alt="image" style="width:100%">
+            {% endif %}
+            <div class="card-body">
+                <h4 class="card-title">{{ user.username }}</h4>
+                <p class="card-text">{{ user.description|truncatewords:30 }}</p>
+                <a href="{% url 'password_change' %}" class="btn btn-info">Thay đổi mật khẩu</a>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-8">
+        <form method="post" action="." enctype="multipart/form-data">
+            {% csrf_token %}
+            
+            {% for error in form.non_field_errors %}
+            <div class="alert alert-danger" role="alert">
+                {{ error|escape }}
+            </div>
+            {% endfor %} 
+
+            <div class="row">
+                <div class="col-md-6 mb-3">
+                    <label>Họ</label>
+                    {% render_field form.first_name class="form-control" %}
+                    {% for error in form.first_name.errors %}
+                    <div class="invalid-feedback" style="display: block">{{ error|escape }}</div>      
+                    {% endfor %}
+                </div>
+                <div class="col-md-6 mb-3">
+                    <label>Tên</label>
+                    {% render_field form.last_name class="form-control" %}
+                    {% for error in form.last_name.errors %}
+                    <div class="invalid-feedback" style="display: block">{{ error|escape }}</div>      
+                    {% endfor %}
+                </div>
+            </div>
+            <div class="form-group">
+                {{ form.photo }}
+            </div>
+            <div class="row">
+                <div class="col-md-6 mb-3">
+                    <label>Username</label>
+                    {% render_field form.username class="form-control" %}
+                    {% for error in form.username.errors %}
+                    <div class="invalid-feedback" style="display: block">{{ error|escape }}</div>      
+                    {% endfor %}
+                </div>
+                <div class="col-md-6 mb-3">
+                    <label>Email</label>
+                    {% render_field form.email class="form-control" %}
+                    {% for error in form.email.errors %}
+                    <div class="invalid-feedback" style="display: block">{{ error|escape }}</div>      
+                    {% endfor %}
+                </div>
+            </div>
+            <div class="mb-3">
+                <label>Địa chỉ</label>
+                {% render_field form.address class="form-control" %}
+                {% for error in form.address.errors %}
+                <div class="invalid-feedback" style="display: block">{{ error|escape }}</div>      
+                {% endfor %}
+            </div>
+            <div class="mb-3">
+                <label>Giới thiệu bản thân</label>
+                {% render_field form.description class="form-control" rows="7" %}
+                {% for error in form.description.errors %}
+                <div class="invalid-feedback" style="display: block">{{ error|escape }}</div>      
+                {% endfor %}
+            </div>
+            <hr class="mb-4">
+            <button class="btn btn-primary btn-lg btn-block" type="submit">Cập nhật</button>
+        </form>
+    </div>
+</div>
+{% endblock main %}
