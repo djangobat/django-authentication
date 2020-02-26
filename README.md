@@ -1,6 +1,6 @@
 # Tạo trang xác thực người dùng với Django
 
-Xem chi tiết bài viết tại [Tạo trang xác thực người dùng với Django ]()
+Xem chi tiết bài viết tại [Tạo trang xác thực người dùng với Django Authentication](https://djangobat.com/blog/tao-xac-thuc-nguoi-dung-trong-django/)
 
 
 ## Cài đặt

@@ -1,14 +1,13 @@
 {% extends "base.html" %}
 {% load widget_tweaks %}
 {% block title %}
-    Đăng nhập
+Đăng nhập
 {% endblock title %}
-
 {% block main %}
 <div class="text-center pt-5">
     <h1 class="display-4">Đăng nhập</h1>
     <p class="lead text-muted">Nhập thông tin phía dưới để tiến hành đăng nhập.</p>
-</div>       
+</div>
 <form action="{% url 'login' %}" method="post" style="max-width: 420px; margin: auto;">
     {% csrf_token %}
 
@@ -16,20 +15,20 @@
     <div class="alert alert-danger" role="alert">
         {{ error|escape }}
     </div>
-    {% endfor %} 
-
+    
+    {% endfor %}
     <div class="form-group">
         <label for="">Username</label>
         {% render_field form.username class="form-control" placeholder="username" %}
         {% for error in form.username.errors %}
-        <div class="invalid-feedback" style="display: block">{{ error|escape }}</div>      
+        <div class="invalid-feedback" style="display: block">{{ error|escape }}</div>
         {% endfor %}
     </div>
     <div class="form-group">
         <label for="">Password</label>
         {% render_field form.password class="form-control" placeholder="password" %}
         {% for error in form.password.errors %}
-        <div class="invalid-feedback" style="display: block">{{ error|escape }}</div>      
+        <div class="invalid-feedback" style="display: block">{{ error|escape }}</div>
         {% endfor %}
     </div>
     <button class="btn btn-lg btn-primary" type="submit">Đăng nhập</button>
@@ -37,5 +36,4 @@
         Nếu chưa có tài khoản <a href="{% url 'signup' %}">đăng ký</a>
     </p>
 </form>
-
 {% endblock main %}
